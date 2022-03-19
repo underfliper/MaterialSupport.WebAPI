@@ -9,6 +9,8 @@
         public string Password { get; set; }
 
         public Roles Role { get; set; }
+
+        public Student Student { get; set; }
     }
 
     public enum Roles
