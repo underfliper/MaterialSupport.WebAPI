@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MaterialSupport.DB.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MaterialSupport.DB
 {
@@ -8,5 +9,6 @@ namespace MaterialSupport.DB
         {
         }
 
+        public DbSet<User> Users { get; set; }
     }
 }
