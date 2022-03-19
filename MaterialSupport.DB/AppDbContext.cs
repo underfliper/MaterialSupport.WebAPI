@@ -10,5 +10,9 @@ namespace MaterialSupport.DB
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Student> Students { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
     }
 }
