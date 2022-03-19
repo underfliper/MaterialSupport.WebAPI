@@ -11,6 +11,8 @@
         public Roles Role { get; set; }
 
         public Student Student { get; set; }
+
+        public Employee Employee { get; set; }
     }
 
     public enum Roles
