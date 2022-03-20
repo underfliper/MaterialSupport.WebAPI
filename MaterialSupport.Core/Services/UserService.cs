@@ -22,7 +22,7 @@ namespace MaterialSupport.Core.Services
             _passwordHasher = passwordHasher;
         }
 
-        public async Task<UserDto> Register(UserDto user)
+        public async Task<RegisteredUser> Register(UserDto user)
         {
             var checkUsername = await _context.Users
                 .FirstOrDefaultAsync(u => u.Username.Equals(user.Username));
@@ -42,7 +42,7 @@ namespace MaterialSupport.Core.Services
             await _context.AddAsync(newUser);
             await _context.SaveChangesAsync();
 
-            return user;
+            return _mapper.Map<RegisteredUser>(user);
 
         }
     }

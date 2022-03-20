@@ -5,6 +5,6 @@ namespace MaterialSupport.Core.Interfaces
 {
     public interface IUserService
     {
-        Task<UserDto> Register(UserDto user);
+        Task<RegisteredUser> Register(UserDto user);
     }
 }

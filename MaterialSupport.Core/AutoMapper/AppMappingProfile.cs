@@ -11,6 +11,7 @@ namespace MaterialSupport.Core.AutoMapper
 			CreateMap<UserDto, User>();
 			CreateMap<StudentDto, Student>();
 			CreateMap<EmployeeDto, Employee>();
+			CreateMap<UserDto, RegisteredUser>();
 		}
 	}
 }
