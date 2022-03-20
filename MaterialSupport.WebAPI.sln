@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialSupport.WebAPI", "MaterialSupport.WebAPI\MaterialSupport.WebAPI.csproj", "{BE03BD8F-14A9-4972-952D-ABB0646D2EAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSupport.DB", "MaterialSupport.DB\MaterialSupport.DB.csproj", "{0180B3DB-BB13-40AC-A711-2DAA0D418BB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialSupport.DB", "MaterialSupport.DB\MaterialSupport.DB.csproj", "{0180B3DB-BB13-40AC-A711-2DAA0D418BB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSupport.Core", "MaterialSupport.Core\MaterialSupport.Core.csproj", "{CC1B8740-6594-4991-9F75-FDFEBE2F2F63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0180B3DB-BB13-40AC-A711-2DAA0D418BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0180B3DB-BB13-40AC-A711-2DAA0D418BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0180B3DB-BB13-40AC-A711-2DAA0D418BB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC1B8740-6594-4991-9F75-FDFEBE2F2F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1B8740-6594-4991-9F75-FDFEBE2F2F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1B8740-6594-4991-9F75-FDFEBE2F2F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC1B8740-6594-4991-9F75-FDFEBE2F2F63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
