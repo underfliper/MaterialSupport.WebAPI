@@ -1,3 +1,4 @@
+using MaterialSupport.Core.AutoMapper;
 using MaterialSupport.Core.Dto;
 using MaterialSupport.Core.Interfaces;
 using MaterialSupport.Core.Services;
@@ -33,6 +34,8 @@ namespace MaterialSupport.WebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MaterialSupport.WebAPI", Version = "v1" });
             });
+
+            services.AddAutoMapper(typeof(AppMappingProfile));
 
             services.AddTransient<IUserService, UserService>();
 

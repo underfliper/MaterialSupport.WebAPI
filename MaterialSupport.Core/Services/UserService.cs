@@ -1,4 +1,5 @@
-﻿using MaterialSupport.Core.CustomExceptions;
+﻿using AutoMapper;
+using MaterialSupport.Core.CustomExceptions;
 using MaterialSupport.Core.Dto;
 using MaterialSupport.Core.Interfaces;
 using MaterialSupport.DB;
@@ -12,10 +13,12 @@ namespace MaterialSupport.Core.Services
     public class UserService : IUserService
     {
         private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
         private readonly IPasswordHasher<UserDto> _passwordHasher;
-        public UserService(AppDbContext context, IPasswordHasher<UserDto> passwordHasher)
+        public UserService(AppDbContext context, IMapper mapper, IPasswordHasher<UserDto> passwordHasher)
         {
             _context = context;
+            _mapper = mapper;
             _passwordHasher = passwordHasher;
         }
 
@@ -34,29 +37,7 @@ namespace MaterialSupport.Core.Services
                 user.Password = _passwordHasher.HashPassword(user, user.Password);
             }
 
-            User newUser = new()
-            {
-                Username = user.Username,
-                Password = user.Password,
-                Role = user.Role,
-                Student = user.Student != null ? new()
-                {
-                    Surname = user.Student?.Surname,
-                    Name = user.Student.Name,
-                    Lastname = user.Student.Lastname,
-                    Group = user.Student.Group,
-                    Gender = user.Student.Gender,
-                    Birthday = user.Student.Birthday,
-                    Birthplace = user.Student.Birthplace,
-                    Citizenship = user.Student.Citizenship
-                } : null,
-                Employee = user.Employee != null ? new()
-                {
-                    Surname = user.Employee.Surname,
-                    Name = user.Employee.Name,
-                    Lastname = user.Employee.Lastname
-                } : null
-            };
+            var newUser = _mapper.Map<User>(user);
 
             await _context.AddAsync(newUser);
             await _context.SaveChangesAsync();
