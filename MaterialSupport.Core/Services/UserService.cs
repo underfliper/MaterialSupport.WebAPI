@@ -2,6 +2,7 @@
 using MaterialSupport.Core.CustomExceptions;
 using MaterialSupport.Core.Dto;
 using MaterialSupport.Core.Interfaces;
+using MaterialSupport.Core.Utilities;
 using MaterialSupport.DB;
 using MaterialSupport.DB.Models;
 using Microsoft.AspNetCore.Identity;
@@ -38,7 +39,7 @@ namespace MaterialSupport.Core.Services
             return new AuthenticatedUser()
             {
                 Username = loginRequest.Username,
-                Token = "test_token"
+                Token = JwtGenerator.GenerateAuthToken(dbUser)
             };
         }
 

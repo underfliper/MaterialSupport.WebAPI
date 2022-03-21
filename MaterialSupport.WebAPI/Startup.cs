@@ -3,6 +3,7 @@ using MaterialSupport.Core.Interfaces;
 using MaterialSupport.Core.Services;
 using MaterialSupport.DB;
 using MaterialSupport.DB.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +11,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Text;
 
 namespace MaterialSupport.WebAPI
 {
@@ -37,6 +41,25 @@ namespace MaterialSupport.WebAPI
 
             services.AddAutoMapper(typeof(AppMappingProfile));
 
+            var secret = Environment.GetEnvironmentVariable("JWT_SECRET");
+            var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
+
+            services.AddAuthentication(opts =>
+            {
+                opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(opts =>
+            {
+                opts.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = issuer,
+                    ValidateAudience = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret))
+                };
+            });
+
             services.AddTransient<IUserService, UserService>();
 
             services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
@@ -55,6 +78,8 @@ namespace MaterialSupport.WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
