@@ -1,8 +1,8 @@
 using MaterialSupport.Core.AutoMapper;
-using MaterialSupport.Core.Dto;
 using MaterialSupport.Core.Interfaces;
 using MaterialSupport.Core.Services;
 using MaterialSupport.DB;
+using MaterialSupport.DB.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -39,7 +39,7 @@ namespace MaterialSupport.WebAPI
 
             services.AddTransient<IUserService, UserService>();
 
-            services.AddTransient<IPasswordHasher<UserDto>, PasswordHasher<UserDto>>();
+            services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -17,6 +17,20 @@ namespace MaterialSupport.WebAPI.Controllers
             _userService = userService;
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
+        {
+            try
+            {
+                var result = await _userService.Login(loginRequest);
+                return Created("", result);
+            }
+            catch (InvalidUsernameOrPasswordException e)
+            {
+                return StatusCode(401, e.Message);
+            }
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserDto user)
         {

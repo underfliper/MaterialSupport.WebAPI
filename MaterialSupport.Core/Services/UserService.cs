@@ -14,12 +14,32 @@ namespace MaterialSupport.Core.Services
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        private readonly IPasswordHasher<UserDto> _passwordHasher;
-        public UserService(AppDbContext context, IMapper mapper, IPasswordHasher<UserDto> passwordHasher)
+        private readonly IPasswordHasher<User> _passwordHasher;
+
+        public UserService(AppDbContext context, IMapper mapper, IPasswordHasher<User> passwordHasher)
         {
             _context = context;
             _mapper = mapper;
             _passwordHasher = passwordHasher;
+        }
+
+        public async Task<AuthenticatedUser> Login(LoginRequest loginRequest)
+        {
+            var dbUser = await _context.Users
+                .FirstOrDefaultAsync(u => u.Username == loginRequest.Username);
+
+            if (dbUser == null ||
+                dbUser.Password == null ||
+                _passwordHasher.VerifyHashedPassword(dbUser, dbUser.Password, loginRequest.Password) == PasswordVerificationResult.Failed)
+            {
+                throw new InvalidUsernameOrPasswordException("Неверное имя пользователя или пароль");
+            }
+
+            return new AuthenticatedUser()
+            {
+                Username = loginRequest.Username,
+                Token = "test_token"
+            };
         }
 
         public async Task<RegisteredUser> Register(UserDto user)
@@ -29,12 +49,12 @@ namespace MaterialSupport.Core.Services
 
             if (checkUsername != null)
             {
-                throw new UsernameAlreadyExistsException("Username already exists");
+                throw new UsernameAlreadyExistsException("Такое имя пользователя уже занято!");
             }
 
             if (!string.IsNullOrEmpty(user.Password))
             {
-                user.Password = _passwordHasher.HashPassword(user, user.Password);
+                user.Password = _passwordHasher.HashPassword(checkUsername, user.Password);
             }
 
             var newUser = _mapper.Map<User>(user);
