@@ -1,6 +1,7 @@
 ﻿using MaterialSupport.Core.CustomExceptions;
 using MaterialSupport.Core.Dto;
 using MaterialSupport.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -31,6 +32,7 @@ namespace MaterialSupport.WebAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserDto user)
         {
