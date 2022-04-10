@@ -64,6 +64,18 @@ namespace MaterialSupport.WebAPI
 
             services.AddAutoMapper(typeof(AppMappingProfile));
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MaterialSupportPolicy",
+                    builder =>
+                    {
+                        builder.WithOrigins("*")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
+
             var secret = Environment.GetEnvironmentVariable("JWT_SECRET");
             var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
 
@@ -84,6 +96,7 @@ namespace MaterialSupport.WebAPI
             });
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IStudentService, StudentService>();
 
             services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
         }
@@ -101,6 +114,8 @@ namespace MaterialSupport.WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("MaterialSupportPolicy");
 
             app.UseAuthentication();
 

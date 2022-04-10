@@ -9,7 +9,7 @@ namespace MaterialSupport.Core.AutoMapper
 		public AppMappingProfile()
 		{
 			CreateMap<UserDto, User>();
-			CreateMap<StudentDto, Student>();
+			CreateMap<StudentDto, Student>().ReverseMap();
 			CreateMap<EmployeeDto, Employee>();
 			CreateMap<UserDto, RegisteredUser>();
 		}
