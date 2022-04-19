@@ -23,13 +23,13 @@ namespace MaterialSupport.WebAPI.Controllers
         }
 
         [Authorize(Roles = "Student")]
-        [HttpGet("/getstudent")]
+        [HttpGet("getstudent")]
         public async Task<IActionResult> GetStudent()
         {
             try
             {
                 var result = await _studentService.GetStudent(userId);
-                return Created("", result);
+                return Ok(result);
             }
             catch (StudentNotFoundException e)
             {

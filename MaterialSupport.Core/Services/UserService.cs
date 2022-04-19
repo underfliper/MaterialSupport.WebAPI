@@ -33,7 +33,7 @@ namespace MaterialSupport.Core.Services
                 dbUser.Password == null ||
                 _passwordHasher.VerifyHashedPassword(dbUser, dbUser.Password, loginRequest.Password) == PasswordVerificationResult.Failed)
             {
-                throw new InvalidUsernameOrPasswordException("Неверное имя пользователя или пароль");
+                throw new InvalidUsernameOrPasswordException("Неверный логин или пароль");
             }
 
             return new AuthenticatedUser()
@@ -50,7 +50,7 @@ namespace MaterialSupport.Core.Services
 
             if (checkUsername != null)
             {
-                throw new UsernameAlreadyExistsException("Такое имя пользователя уже занято!");
+                throw new UsernameAlreadyExistsException("Такой логин уже занят!");
             }
 
             if (!string.IsNullOrEmpty(user.Password))
