@@ -1,4 +1,5 @@
 ﻿using MaterialSupport.Core.CustomExceptions;
+using MaterialSupport.Core.Dto;
 using MaterialSupport.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,20 @@ namespace MaterialSupport.WebAPI.Controllers
             try
             {
                 var result = await _studentService.GetStudent(userId);
+                return Ok(result);
+            }
+            catch (StudentNotFoundException e)
+            {
+                return StatusCode(404, e.Message);
+            }
+        }
+
+        [HttpPut("editcontacts")]
+        public async Task<IActionResult> EditContacts([FromBody] ContactsDto contacts)
+        {
+            try
+            {
+                var result = await _studentService.EditContacts(userId, contacts);
                 return Ok(result);
             }
             catch (StudentNotFoundException e)

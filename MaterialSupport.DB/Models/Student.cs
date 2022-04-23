@@ -28,5 +28,6 @@ namespace MaterialSupport.DB.Models
         [ForeignKey("UserId")]
         public User User { get; set; }
 
+        public StudentContacts Contacts { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialSupport.DB.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MaterialSupport.Core.Dto
@@ -21,5 +22,7 @@ namespace MaterialSupport.Core.Dto
         public string Birthplace { get; set; }
 
         public string Citizenship { get; set; }
+
+        public ContactsDto Contacts { get; set; }
     }
 }

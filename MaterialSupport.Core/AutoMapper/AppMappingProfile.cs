@@ -12,6 +12,7 @@ namespace MaterialSupport.Core.AutoMapper
 			CreateMap<StudentDto, Student>().ReverseMap();
 			CreateMap<EmployeeDto, Employee>();
 			CreateMap<UserDto, RegisteredUser>();
+			CreateMap<ContactsDto, StudentContacts>().ReverseMap();
 		}
 	}
 }
