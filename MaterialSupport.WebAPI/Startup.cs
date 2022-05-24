@@ -97,7 +97,7 @@ namespace MaterialSupport.WebAPI
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IStudentService, StudentService>();
-
+            services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
         }
 

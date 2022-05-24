@@ -13,6 +13,7 @@ namespace MaterialSupport.Core.AutoMapper
 			CreateMap<EmployeeDto, Employee>();
 			CreateMap<UserDto, RegisteredUser>();
 			CreateMap<ContactsDto, StudentContacts>().ReverseMap();
+			CreateMap<Category, CategoryDto>();
 		}
 	}
 }
