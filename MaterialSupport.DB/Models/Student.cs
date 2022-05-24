@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,5 +30,7 @@ namespace MaterialSupport.DB.Models
         public User User { get; set; }
 
         public StudentContacts Contacts { get; set; }
+
+        public List<Application> Applications { get; set; }
     }
 }

@@ -17,6 +17,19 @@ namespace MaterialSupport.DB
 
         public DbSet<StudentContacts> StudentContacts { get; set; }
 
+        public DbSet<Application> Applications { get; set; }
+
+        public DbSet<ApplicationsCategories> ApplicationsCategories { get; set; }
+
+        public DbSet<ApplicationsSupportTypes> ApplicationsSupportTypes { get; set; }
+
+        public DbSet<ApplicationsDocuments> ApplicationsDocuments { get; set; }
+
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<SupportType> SupportTypes { get; set; }
+
+        public DbSet<Document> Documents { get; set; }
+
     }
 }

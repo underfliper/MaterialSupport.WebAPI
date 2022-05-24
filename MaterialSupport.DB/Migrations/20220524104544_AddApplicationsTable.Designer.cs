@@ -4,14 +4,16 @@ using MaterialSupport.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MaterialSupport.DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220524104544_AddApplicationsTable")]
+    partial class AddApplicationsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,72 +44,6 @@ namespace MaterialSupport.DB.Migrations
                     b.ToTable("Applications");
                 });
 
-            modelBuilder.Entity("MaterialSupport.DB.Models.ApplicationsCategories", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ApplicationId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("ApplicationsCategories");
-                });
-
-            modelBuilder.Entity("MaterialSupport.DB.Models.ApplicationsDocuments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ApplicationId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DocumentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationId");
-
-                    b.HasIndex("DocumentId");
-
-                    b.ToTable("ApplicationsDocuments");
-                });
-
-            modelBuilder.Entity("MaterialSupport.DB.Models.ApplicationsSupportTypes", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ApplicationId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SupportTypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationId");
-
-                    b.HasIndex("SupportTypeId");
-
-                    b.ToTable("ApplicationsSupportTypes");
-                });
-
             modelBuilder.Entity("MaterialSupport.DB.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -121,24 +57,6 @@ namespace MaterialSupport.DB.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("MaterialSupport.DB.Models.Document", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<byte[]>("Data")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("MaterialSupport.DB.Models.Employee", b =>
@@ -237,21 +155,6 @@ namespace MaterialSupport.DB.Migrations
                     b.ToTable("StudentContacts");
                 });
 
-            modelBuilder.Entity("MaterialSupport.DB.Models.SupportType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SupportTypes");
-                });
-
             modelBuilder.Entity("MaterialSupport.DB.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -282,51 +185,6 @@ namespace MaterialSupport.DB.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("MaterialSupport.DB.Models.ApplicationsCategories", b =>
-                {
-                    b.HasOne("MaterialSupport.DB.Models.Application", "Application")
-                        .WithMany("Categories")
-                        .HasForeignKey("ApplicationId");
-
-                    b.HasOne("MaterialSupport.DB.Models.Category", "Category")
-                        .WithMany("Applications")
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Application");
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("MaterialSupport.DB.Models.ApplicationsDocuments", b =>
-                {
-                    b.HasOne("MaterialSupport.DB.Models.Application", "Application")
-                        .WithMany("Documents")
-                        .HasForeignKey("ApplicationId");
-
-                    b.HasOne("MaterialSupport.DB.Models.Document", "Document")
-                        .WithMany("Applications")
-                        .HasForeignKey("DocumentId");
-
-                    b.Navigation("Application");
-
-                    b.Navigation("Document");
-                });
-
-            modelBuilder.Entity("MaterialSupport.DB.Models.ApplicationsSupportTypes", b =>
-                {
-                    b.HasOne("MaterialSupport.DB.Models.Application", "Application")
-                        .WithMany("SupportTypes")
-                        .HasForeignKey("ApplicationId");
-
-                    b.HasOne("MaterialSupport.DB.Models.SupportType", "SupportType")
-                        .WithMany("Applications")
-                        .HasForeignKey("SupportTypeId");
-
-                    b.Navigation("Application");
-
-                    b.Navigation("SupportType");
-                });
-
             modelBuilder.Entity("MaterialSupport.DB.Models.Employee", b =>
                 {
                     b.HasOne("MaterialSupport.DB.Models.User", "User")
@@ -354,35 +212,11 @@ namespace MaterialSupport.DB.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("MaterialSupport.DB.Models.Application", b =>
-                {
-                    b.Navigation("Categories");
-
-                    b.Navigation("Documents");
-
-                    b.Navigation("SupportTypes");
-                });
-
-            modelBuilder.Entity("MaterialSupport.DB.Models.Category", b =>
-                {
-                    b.Navigation("Applications");
-                });
-
-            modelBuilder.Entity("MaterialSupport.DB.Models.Document", b =>
-                {
-                    b.Navigation("Applications");
-                });
-
             modelBuilder.Entity("MaterialSupport.DB.Models.Student", b =>
                 {
                     b.Navigation("Applications");
 
                     b.Navigation("Contacts");
-                });
-
-            modelBuilder.Entity("MaterialSupport.DB.Models.SupportType", b =>
-                {
-                    b.Navigation("Applications");
                 });
 
             modelBuilder.Entity("MaterialSupport.DB.Models.User", b =>
