@@ -15,7 +15,7 @@ namespace MaterialSupport.Core.AutoMapper
 			CreateMap<ContactsDto, StudentContacts>().ReverseMap();
 			CreateMap<Category, CategoryDto>();
 			CreateMap<Document, DocumentDto>();
-			CreateMap<SupportType, SupportTypeDto>();
+			CreateMap<SupportType, SupportTypeDto>().ReverseMap();
 			CreateMap<Application, ApplicationDto>();
 			CreateMap<ApplicationsCategories, ApplicationsCategoriesDto>();
 			CreateMap<ApplicationsSupportTypes, ApplicationsSupportTypesDto>();

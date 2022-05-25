@@ -100,6 +100,7 @@ namespace MaterialSupport.WebAPI
             services.AddTransient<IStudentService, StudentService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IApplicationService, ApplicationService>();
+            services.AddTransient<ISupportTypeService, SupportTypeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
