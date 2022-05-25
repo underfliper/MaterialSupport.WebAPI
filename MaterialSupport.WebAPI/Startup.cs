@@ -96,9 +96,10 @@ namespace MaterialSupport.WebAPI
             });
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddTransient<IStudentService, StudentService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
-            services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddTransient<IApplicationService, ApplicationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
