@@ -51,6 +51,34 @@ namespace MaterialSupport.WebAPI.Controllers
             }
         }
 
+        [HttpGet("getDocuments")]
+        public async Task<IActionResult> GetDocuments(int applicationId)
+        {
+            try
+            {
+                var result = await _applicationService.GetApplicationDocs(applicationId);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(404, e.Message);
+            }
+        }
+
+        [HttpGet("getSupportTypes")]
+        public async Task<IActionResult> GetSupportTypes(int applicationId)
+        {
+            try
+            {
+                var result = await _applicationService.GetApplicationSupportTypes(applicationId);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(404, e.Message);
+            }
+        }
+
         [HttpPost("add")]
         public async Task<IActionResult> Add([FromForm] ApplicationFormDto application)
         {
@@ -58,6 +86,48 @@ namespace MaterialSupport.WebAPI.Controllers
             {
                 var result = await _applicationService.Add(UserId, application);
                 return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(404, e.Message);
+            }
+        }
+
+        [HttpPut("accept")]
+        public async Task<IActionResult> Accept(int applicationId)
+        {
+            try
+            {
+                var result = await _applicationService.Accept(applicationId);
+                return Ok("Заявление успешно принято");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(404, e.Message);
+            }
+        }
+
+        [HttpPut("approve")]
+        public async Task<IActionResult> Approve(int applicationId, int supportTypeId)
+        {
+            try
+            {
+                var result = await _applicationService.Approve(applicationId, supportTypeId);
+                return Ok("Заявление успешно одобрено");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(404, e.Message);
+            }
+        }
+
+        [HttpPut("reject")]
+        public async Task<IActionResult> Reject(int applicationId)
+        {
+            try
+            {
+                var result = await _applicationService.Reject(applicationId);
+                return Ok("Заявление успешно отклонено");
             }
             catch (Exception e)
             {

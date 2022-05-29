@@ -16,7 +16,7 @@ namespace MaterialSupport.WebAPI.Controllers
     {
         private readonly IStudentService _studentService;
 
-        private int userId => int.Parse(User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value);
+        private int UserId => int.Parse(User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
         public StudentController(IStudentService studentService)
         {
@@ -29,7 +29,7 @@ namespace MaterialSupport.WebAPI.Controllers
         {
             try
             {
-                var result = await _studentService.GetStudent(userId);
+                var result = await _studentService.GetStudent(UserId);
                 return Ok(result);
             }
             catch (StudentNotFoundException e)
@@ -43,7 +43,7 @@ namespace MaterialSupport.WebAPI.Controllers
         {
             try
             {
-                var result = await _studentService.EditContacts(userId, contacts);
+                var result = await _studentService.EditContacts(UserId, contacts);
                 return Ok(result);
             }
             catch (StudentNotFoundException e)

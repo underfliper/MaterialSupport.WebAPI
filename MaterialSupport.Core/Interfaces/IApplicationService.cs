@@ -10,5 +10,10 @@ namespace MaterialSupport.Core.Interfaces
         Task<ApplicationViewDto> GetById(int applicationId);
         Task<List<ApplicationViewDto>> GetByStatus(Status status);
         Task<ApplicationDto> Add(int userId, ApplicationFormDto application);
+        Task<List<DocumentDto>> GetApplicationDocs(int applicationId);
+        Task<List<SupportTypeDto>> GetApplicationSupportTypes(int applicationId);
+        Task<ApplicationDto> Accept(int applicationId);
+        Task<ApplicationDto> Approve(int applicationId, int supportTypeId);
+        Task<ApplicationDto> Reject(int applicationId);
     }
 }

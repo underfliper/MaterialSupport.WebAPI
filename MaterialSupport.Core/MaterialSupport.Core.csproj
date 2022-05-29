@@ -16,4 +16,10 @@
     <ProjectReference Include="..\MaterialSupport.DB\MaterialSupport.DB.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Utilities\Recommender.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

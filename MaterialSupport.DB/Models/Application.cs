@@ -29,6 +29,7 @@ namespace MaterialSupport.DB.Models
         RequiringConsideration,
         PendingConfirmation,
         Approved,
-        Denied
+        Denied,
+        Processed
     }
 }

@@ -57,7 +57,7 @@ namespace MaterialSupport.WebAPI
                                     Id = "Bearer"
                                 }
                             },
-                            new string[] {}
+                            Array.Empty<string>()
                     }
                 });
             });

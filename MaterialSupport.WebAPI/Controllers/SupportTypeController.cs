@@ -16,8 +16,6 @@ namespace MaterialSupport.WebAPI.Controllers
     {
         private readonly ISupportTypeService _supportTypeService;
 
-        private int UserId => int.Parse(User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value);
-
         public SupportTypeController(ISupportTypeService supportTypeService)
         {
             _supportTypeService = supportTypeService;
@@ -28,7 +26,7 @@ namespace MaterialSupport.WebAPI.Controllers
         {
             try
             {
-                var result = await _supportTypeService.GetById(UserId);
+                var result = await _supportTypeService.GetById(id);
                 return Ok(result);
             }
             catch (Exception e)
