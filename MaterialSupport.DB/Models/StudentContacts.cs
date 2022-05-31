@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MaterialSupport.DB.Models
 {
@@ -6,6 +7,7 @@ namespace MaterialSupport.DB.Models
     {
         public int Id { get; set; }
 
+        [MaxLength(12)]
         public string Phone { get; set; }
 
         public string Email { get; set; }

@@ -9,10 +9,13 @@ namespace MaterialSupport.DB.Models
     {
         public int Id { get; set; }
 
+        [MaxLength(255)]
         public string Surname { get; set; }
 
+        [MaxLength(255)]
         public string Name { get; set; }
 
+        [MaxLength(255)]
         public string Lastname { get; set; }
 
         public string Group { get; set; }
