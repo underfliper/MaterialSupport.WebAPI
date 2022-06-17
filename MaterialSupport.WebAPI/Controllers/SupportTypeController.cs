@@ -3,8 +3,6 @@ using MaterialSupport.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MaterialSupport.WebAPI.Controllers
@@ -69,6 +67,20 @@ namespace MaterialSupport.WebAPI.Controllers
             try
             {
                 var result = await _supportTypeService.Edit(supportType);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpDelete("remove")]
+        public async Task<IActionResult> Remove(int supportTypeId)
+        {
+            try
+            {
+                var result = await _supportTypeService.Remove(supportTypeId);
                 return Ok(result);
             }
             catch (Exception e)

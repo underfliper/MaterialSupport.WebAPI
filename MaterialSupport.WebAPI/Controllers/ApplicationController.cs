@@ -99,7 +99,7 @@ namespace MaterialSupport.WebAPI.Controllers
             try
             {
                 var result = await _applicationService.Accept(applicationId);
-                return Ok("Заявление успешно принято");
+                return Ok(result);
             }
             catch (Exception e)
             {
@@ -113,7 +113,7 @@ namespace MaterialSupport.WebAPI.Controllers
             try
             {
                 var result = await _applicationService.Approve(applicationId, supportTypeId);
-                return Ok("Заявление успешно одобрено");
+                return Ok(result);
             }
             catch (Exception e)
             {

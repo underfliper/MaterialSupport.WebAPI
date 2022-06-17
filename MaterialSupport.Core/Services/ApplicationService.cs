@@ -31,6 +31,10 @@ namespace MaterialSupport.Core.Services
                 .Include(a => a.Student)
                 .Include(a => a.Categories)
                 .ThenInclude(c => c.Category)
+                .Include(a => a.Documents)
+                .ThenInclude(d => d.Document)
+                .Include(a => a.SupportTypes)
+                .ThenInclude(sp => sp.SupportType)
                 .FirstOrDefaultAsync(a => a.Id.Equals(applicationId));
 
             return _mapper.Map<ApplicationViewDto>(application);

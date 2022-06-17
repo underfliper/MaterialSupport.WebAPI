@@ -23,5 +23,9 @@ namespace MaterialSupport.Core.Dto
         public Status Status { get; set; }
 
         public List<ApplicationsCategoriesDto> Categories { get; set; }
+
+        public List<ApplicationsSupportTypesDto> SupportTypes { get; set; }
+
+        public List<ApplicationsDocumentsDto> Documents { get; set; }
     }
 }
