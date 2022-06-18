@@ -5,6 +5,8 @@ using MaterialSupport.Core.Interfaces;
 using MaterialSupport.DB;
 using MaterialSupport.DB.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MaterialSupport.Core.Services
@@ -29,6 +31,18 @@ namespace MaterialSupport.Core.Services
 
             return _mapper.Map<StudentDto>(dbStudent);
 
+        }
+
+        public async Task<List<ApplicationDto>> GetApplications(int studentId)
+        {
+            var dbStudent = await _context.Students.Include(s => s.Contacts).FirstOrDefaultAsync(s => s.Id.Equals(studentId));
+
+            if (dbStudent == null)
+                throw new StudentNotFoundException("Студент, соотвествующий данному пользователю, не найден.");
+
+            var applications = await _context.Applications.Where(a => a.Student.Id.Equals(studentId)).ToListAsync();
+
+            return _mapper.Map<List<ApplicationDto>>(applications);
         }
 
         public async Task<StudentDto> EditContacts(int userId, ContactsDto contacts)
