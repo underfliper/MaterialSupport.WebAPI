@@ -38,11 +38,11 @@ namespace MaterialSupport.WebAPI.Controllers
         }
 
         [HttpGet("getapplications")]
-        public async Task<IActionResult> GetApplications(int studentId)
+        public async Task<IActionResult> GetApplications()
         {
             try
             {
-                var result = await _studentService.GetApplications(studentId);
+                var result = await _studentService.GetApplications(UserId);
                 return Ok(result);
             }
             catch (StudentNotFoundException e)

@@ -33,16 +33,16 @@ namespace MaterialSupport.Core.Services
 
         }
 
-        public async Task<List<ApplicationDto>> GetApplications(int studentId)
+        public async Task<List<ApplicationShortDto>> GetApplications(int userId)
         {
-            var dbStudent = await _context.Students.Include(s => s.Contacts).FirstOrDefaultAsync(s => s.Id.Equals(studentId));
+            var dbStudent = await _context.Students.Include(s => s.Contacts).FirstOrDefaultAsync(s => s.User.Id.Equals(userId));
 
             if (dbStudent == null)
                 throw new StudentNotFoundException("Студент, соотвествующий данному пользователю, не найден.");
 
-            var applications = await _context.Applications.Where(a => a.Student.Id.Equals(studentId)).ToListAsync();
+            var applications = await _context.Applications.Where(a => a.Student.Id.Equals(dbStudent.Id)).ToListAsync();
 
-            return _mapper.Map<List<ApplicationDto>>(applications);
+            return _mapper.Map<List<ApplicationShortDto>>(applications);
         }
 
         public async Task<StudentDto> EditContacts(int userId, ContactsDto contacts)

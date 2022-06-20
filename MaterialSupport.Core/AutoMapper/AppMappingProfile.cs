@@ -17,6 +17,7 @@ namespace MaterialSupport.Core.AutoMapper
 			CreateMap<Document, DocumentDto>();
 			CreateMap<SupportType, SupportTypeDto>().ReverseMap();
 			CreateMap<Application, ApplicationDto>();
+			CreateMap<Application, ApplicationShortDto>();
 			CreateMap<ApplicationsCategories, ApplicationsCategoriesDto>();
 			CreateMap<ApplicationsSupportTypes, ApplicationsSupportTypesDto>();
 			CreateMap<ApplicationsDocuments, ApplicationsDocumentsDto>();
